@@ -1,96 +1,137 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+body{
+    background-color: #F0F2F2;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    justify-content: center;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+.todo{
+    background-color: #FFFFFF;
+    margin-top: 100px;
+    padding: 40px;
+    border-radius: 20px;
+    width: 700px;
+    max-width: 700px;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.todo__title{
+    font-size: 2rem;
+    color: #262626;
+    margin-bottom: 40px;
 }
 
-#app {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Form */
+.todo__form{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+
+    margin-bottom: 30px;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vanilla:hover {
-  filter: drop-shadow(0 0 2em #f7df1eaa);
+.todo__input{
+    flex: 1; 
+    background-color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: 500;
+
+    border: none;
+    border-bottom: 2px solid #8b8b8b;
+    outline: none;
+    padding: 0.5rem ;
+}   
+
+.todo__input:focus {
+    border-bottom: 2px solid #222222;
 }
 
-.card {
-  padding: 2em;
+.todo__add-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 40px;
 }
 
-.read-the-docs {
-  color: #888;
+.todo__img{
+    display: block;
+    width: 100%;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+/* List */
+.todo__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 20px;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.todo__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 18px 16px;
+    border: 1.5px solid #ccc;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    background-color: #fff;
+}
+
+.todo__checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #555; 
+    margin-right: 10px;
+}
+
+.todo__text {
+    flex: 1;
+    font-size: 1rem;
+    color: #333;
+    margin: 0 10px;
+}
+
+/* Estilo para cuando el checkbox esta marcado*/
+.todo__checkbox:checked + .todo__text {
+    text-decoration: line-through;
+    color: #999;
+}
+
+.todo__delete-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    width: 12px;
+    height: 12px;
+}
+
+.todo__img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+/* "Footer" del todo*/
+.todo__remaining{
+    color: #414141;
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.todo__quote{
+    color: #999;
+    font-size: 1rem;
+    font-weight: 500;
 }
