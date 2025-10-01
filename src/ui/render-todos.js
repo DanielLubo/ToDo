@@ -21,6 +21,9 @@ export const renderTodos = (container) => {
                     ${completed ? 'checked' : ''}
                 >
                 <p class="todo__text">${text}</p>
+                <button class="todo__edit-btn" data-id="${id}">
+                    <img class="todo__edit-img" src="/src/image/boton-editar.png" alt="Edit task">
+                </button>
                 <button class="todo__delete-btn" data-id="${id}">
                     <img class="todo__img" src="/src/image/equis.png" alt="Delete task">
                 </button>

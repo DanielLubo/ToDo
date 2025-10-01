@@ -4,6 +4,7 @@ import { loadTodos } from './storage/local-storage';
 import { addTodo, deleteTodo, toggleTodo } from './use-cases/index.js';
 import { renderTodos } from './ui/render-todos.js';
 import { updateCounter } from './ui/update-counter.js'
+import { setFilterToState, Filters } from './state/todos-state';
 
 
 // Referencias al DOM
@@ -12,6 +13,7 @@ const addBtn = document.querySelector('.todo__add-btn');
 const todoListHTML = document.querySelector('.todo__list');
 const remainingCount = document.querySelector('.todo__remaining');
 
+const priorityFilterSelect = document.querySelector('.task__filter-select'); 
 
 /**
  * Actualiza toda la UI
@@ -58,6 +60,17 @@ const handleListClick = (e) => {
     }
 }
 
+const handleFilterChange = (e) => { 
+    // Ahora 'e.target' es el <select> mismo.
+    const newFilter = e.target.value; 
+    
+    // Usamos tu función de estado
+    setFilterToState(newFilter);
+    
+    // Refrescamos la interfaz para que muestre la lista filtrada
+    refreshUI();
+}
+
 
 const initApp = () => {
     // Cargar datos del localStorage
@@ -68,6 +81,7 @@ const initApp = () => {
 
     // Event Listeners
     addBtn.addEventListener('click', handleAddTodo);
+
     todoInput.addEventListener('keyup', (e) => {
         if(e.key === 'Enter'){
             handleAddTodo();
@@ -75,6 +89,8 @@ const initApp = () => {
     })
 
     todoListHTML.addEventListener('click', handleListClick);
+
+    priorityFilterSelect.addEventListener('change', handleFilterChange);
     refreshUI();
 }
 

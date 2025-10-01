@@ -89,6 +89,7 @@ Cada tarea tiene la siguiente estructura:
   completed: false,
   priority: "medium" // "high" | "medium" | "low"
 }
+```
 
 
 ## 👤 Autor

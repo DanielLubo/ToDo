@@ -1,5 +1,5 @@
-import { v4 as uuid } from "uuid";
-import { addTodoToState, getTodos } from "../state/todos-state";
+import { Todo } from "../models/todo";
+import { addTodoToState, Filters, getTodos } from "../state/todos-state";
 import { saveTodos } from "../storage/local-storage";
 
 
@@ -16,13 +16,9 @@ export const addTodo = (text) => {
         return null;
     }
 
-    const newTodo = {
-        id: uuid(),
-        text: enterTex,
-        completed: false,
-    }
+    const newTodo = new Todo(text, 'low');
 
     addTodoToState(newTodo);
-    saveTodos(getTodos());
+    saveTodos(getTodos);
     return newTodo;
 }

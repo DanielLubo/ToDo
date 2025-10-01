@@ -1,4 +1,4 @@
-import { toggleTodoInState, getTodos } from "../state/todos-state";
+import { toggleTodoInState, getTodos, Filters } from "../state/todos-state";
 import { saveTodos } from "../storage/local-storage";
 
 
@@ -8,5 +8,5 @@ import { saveTodos } from "../storage/local-storage";
  */
 export const toggleTodo = (id) => {
     toggleTodoInState(id);
-    saveTodos(getTodos());
+    saveTodos(getTodos);
 }

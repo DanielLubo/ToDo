@@ -1,4 +1,4 @@
-import { removeTodoFromState, getTodos } from "../state/todos-state";
+import { removeTodoFromState, getTodos} from "../state/todos-state";
 import { saveTodos } from "../storage/local-storage";
 
 
@@ -8,5 +8,5 @@ import { saveTodos } from "../storage/local-storage";
  */
 export const deleteTodo = (id) => {
     removeTodoFromState(id);
-    saveTodos(getTodos());
+    saveTodos(getTodos);
 }

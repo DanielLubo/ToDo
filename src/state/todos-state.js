@@ -1,31 +1,44 @@
-import { v4 as uuid } from "uuid";
+import { Todo } from "../models/todo";
 
+export const Filters = {
+    All: 'all',
+    Pending: 'pending',
+    Completed: 'completed'
+};
 
 // Estado de la Aplicacion
-let todosListState = [
-    {
-        id: uuid(),
-        text: 'Aprender JavaScript',
-        completed: false,
-    },
-    {
-        id: uuid(),
-        text: 'Los huevos de pascua',
-        completed: false,
-    },
-    {
-        id: uuid(),
-        text: 'Leer la rata con thiner',
-        completed: false,
-    },
-];
+const stateTodos = { 
+    todos: [
+        new Todo('Aprender Js', 'high'),
+        new Todo('Los huevos de pascua', 'low'),
+        new Todo('Leer la rata con thiner', 'high'),
+        new Todo('Nose ekisde', 'medium'),
+    ],
+    filter : Filters.All
+};
 
 
 /**
- * Obtiene el estado actual de los todos
- * @returns {Array} Lista de ToDos
+ * Retorna los todos dependiendo de su estado
+ * @param {String} filter 
+ * @returns {Array} un array de todos completados, pendientes o todos
  */
-export const getTodos = () => todosListState;
+export const getTodos = () => {
+    const currentFilter = stateTodos.filter;
+    switch(currentFilter){
+        case Filters.All:
+            return [...stateTodos.todos];
+
+        case Filters.Pending:
+            return stateTodos.todos.filter(task => !task.completed);
+
+        case Filters.Completed:
+            return stateTodos.todos.filter(task => task.completed);
+
+        default:
+            throw new Error (`Option ${filter} is not valid.`);
+    };
+};
 
 
 /**
@@ -33,7 +46,7 @@ export const getTodos = () => todosListState;
  * @param {Array} newTodos - Nueva lista de todos
  */
 export const setTodos = ( newTodos ) => {
-    todosListState = newTodos;
+    stateTodos.todos = newTodos;
 };
 
 
@@ -42,7 +55,7 @@ export const setTodos = ( newTodos ) => {
  * @param {Object} todo - El nuevo todo a agregar
  */
 export const addTodoToState = (todo) => {
-    todosListState.push(todo);
+    stateTodos.todos.push(todo);
 };
 
 
@@ -51,7 +64,7 @@ export const addTodoToState = (todo) => {
  * @param {String} id - ID del todo a eliminar
  */
 export const removeTodoFromState = (id) => {
-    todosListState = todosListState.filter(task => task.id !== id);
+    stateTodos.todos = stateTodos.todos.filter(task => task.id !== id);
 };
 
 
@@ -61,17 +74,23 @@ export const removeTodoFromState = (id) => {
  * @returns 
  */
 export const toggleTodoInState = (id) => {
-    const todo = todosListState.find(task => task.id === id);
+    const todo = stateTodos.todos.find(task => task.id === id);
     if(todo){
         todo.completed = !todo.completed;
         return
     };
 };
 
+
+export const setFilterToState = ( newFilter = Filters.All) => {
+    stateTodos.filter = newFilter.toLowerCase(); 
+}
+
+
 /**
  * Cuenta cuántos todos están pendientes (no completados)
  * @returns {number} Cantidad de todos pendientes
  */
 export const getPendingCount = () => {
-    return todosListState.filter(task => !task.completed).length;
+    return stateTodos.todos.filter(task => !task.completed).length;
 }
